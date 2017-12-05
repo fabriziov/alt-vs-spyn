@@ -14,8 +14,8 @@ _A. Vergari, N. Di Mauro, and F. Esposito_
 in proceedings of ECML-PKDD 2015.
 
 ## requirements
-alt-vs-spyn requires [numpy](http://www.numpy.org/) (min. version 1.12.1),
-[sklearn](http://scikit-learn.org/stable/) (min. version 0.18.1),
+_alt-vs-spyn_ requires [numpy](http://www.numpy.org/) (min. version 1.12.1),
+[scikit-learn](http://scikit-learn.org/stable/) (min. version 0.18.1),
 [scipy](http://www.scipy.org/) (min. version 0.15.1), and [numba](http://numba.pydata.org/) (min. version 0.23.1).
 
 ## usage
@@ -103,3 +103,31 @@ To use `EBVS` you can run (for `EBVS-AE` just add the `--adaptive-entropy` param
 To use `RSBVS`, for example taking the 30% and 40% of instances when splitting variables, you can run:
 
     ipython -- bin/learnspn.py data/nltcs --data-ext ts.data valid.data test.data -k 2 -c GMM -f RSBVS -l 0.3 0.4 -g 5 10 15 20 -m 10 50 100 500 -a 0.1 0.2 1.0 2.0 -o output/learnspn_alt_vs
+
+
+## docker
+To try _alt-vs-spyn_ quickly you can pull and run a ready-to-go _alt-vs-spyn_ docker image (with numpy 1.12.1, scikit-learn 0.18.2, scipy 0.19.1, numba 0.24.0, llvmlite 0.9.0, llvm 3.7, python 3.5.2) through the following commands.
+
+Pull the docker image:
+
+    docker pull ventola/alt-vs-spyn
+
+Run the container using the pulled image:
+
+    docker run -i -t -d ventola/alt-vs-spyn:latest /bin/bash
+
+For instance, to run a grid search you can execute the following command into a running container (pay attention, use absolute file pathnames):
+    
+    docker exec -it <your_running_docker_id> ipython -- /alt-vs-spyn/bin/learnspn.py /alt-vs-spyn/data/nltcs --data-ext ts.data valid.data test.data -k 2 -c GMM -g 5 10 15 20 -m 10 50 100 500 -a 0.1 0.2 1 2 -o output/learnspn_alt_vs
+
+Or you may want to `docker attach` to the running _alt-vs-spyn_ container and run commands as described in the previous section.
+
+
+Alternatively, you can build and run a docker image from scratch starting from the `Dockerfile` stored in this repository.
+
+Note: this docker image takes inspiration from other docker image projects such as 
+[biipy](https://github.com/cggh/biipy),
+[dl-docker](https://github.com/floydhub/dl-docker),
+[deepo](https://github.com/ufoym/deepo),
+[docker-ipython](https://github.com/mingfang/docker-ipython), 
+[rocm-testing](https://github.com/numba/rocm_testing_dockers).
