@@ -21,6 +21,11 @@ _alt-vs-spyn_ requires [numpy](http://www.numpy.org/) (min. version 1.12.1),
 ## usage
 Several datasets are provided in the `data/` folder.
 
+In order to overcome the github file size limit, the training set of the  _EUR-Lex_ dataset has been split into 3 parts.
+Concatenate these 3 parts into one single file before using it. For example, with `cat`:
+
+    cat data/eurlex.ts.data.part1of3 data/eurlex.ts.data.part2of3 data/eurlex.ts.data.part3of3 > data/eurlex.ts.data
+
 
 To run the algorithms and their grid search, check the `learnspn.py` script in the `bin/` folder.  
 
