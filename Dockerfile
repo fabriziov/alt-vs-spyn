@@ -47,4 +47,6 @@ RUN wget https://github.com/fabriziov/llvmlite/archive/v0.9.0.zip && \
 RUN pip3 install numba==0.24.0 scipy==0.19.1 scikit-learn==0.18.2
 
 RUN git clone https://github.com/fabriziov/alt-vs-spyn.git
+RUN cat alt-vs-spyn/data/eurlex.ts.data.part1of3 alt-vs-spyn/data/eurlex.ts.data.part2of3 alt-vs-spyn/data/eurlex.ts.data.part3of3 > alt-vs-spyn/data/eurlex.ts.data
+RUN rm alt-vs-spyn/data/eurlex.ts.data.part1of3 alt-vs-spyn/data/eurlex.ts.data.part2of3 alt-vs-spyn/data/eurlex.ts.data.part3of3
 CMD /bin/bash
