@@ -381,7 +381,7 @@ best_state = {}
 best_test_lls = None
 
 preamble = ("""g-factor\tclu-pen\tmin-ins\talpha\tentr-thre\tperc-rand-feats\tperc-rand-instances\tfold\tn_edges""" +
-            """\tdepth\tn_weights\tn_leaves\tn_sums\tn_prods\tn_unpruned_sums\tn_unpruned_prods""" +
+            """\tdepth\tn_weights\tn_params\tn_leaves\tn_sums\tn_prods\tn_unpruned_sums\tn_unpruned_prods""" +
             """\tn_scopes\tlearn-time\tprod-learn-time\tsum-learn-time""" +
             """\ttot-prod-learn-time\ttot-sum-learn-time""" +
             """\ttrain-inf-time\tvalid-inf-time\ttest-inf-time""" +
@@ -475,6 +475,7 @@ with open(out_log_path, 'w') as out_log:
             fold_params[i]['n_edges'] = n_edges
             fold_params[i]['n_levels'] = n_levels
             fold_params[i]['n_weights'] = n_weights
+            fold_params[i]['n_params'] = n_weights + n_leaves
             fold_params[i]['n_leaves'] = n_leaves
             fold_params[i]['n_sums'] = n_sums
             fold_params[i]['n_prods'] = n_prods
@@ -572,6 +573,7 @@ with open(out_log_path, 'w') as out_log:
                                   fold_params[i]['n_edges'],
                                   fold_params[i]['n_levels'],
                                   fold_params[i]['n_weights'],
+                                  fold_params[i]['n_params'],
                                   fold_params[i]['n_leaves'],
                                   fold_params[i]['n_sums'],
                                   fold_params[i]['n_prods'],
